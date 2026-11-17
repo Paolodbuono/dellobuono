@@ -1,15 +1,17 @@
 :root {
-  --ink: #0d1826;
-  --navy: #12263f;
-  --navy-soft: #1c3554;
-  --gold: #c8a15a;
-  --gold-soft: #e6d3ac;
-  --cream: #f8f5f0;
+  /* palette dal logo e dall'insegna del negozio: indaco + giallo */
+  --ink: #140d33;
+  --navy: #2c1c68;
+  --navy-soft: #43308f;
+  --gold: #d9a83c;
+  --gold-ink: #9c7418;
+  --gold-soft: #f2d79a;
+  --cream: #f4f2fb;
   --white: #ffffff;
-  --muted: #5d6773;
-  --line: rgba(18, 38, 63, 0.12);
+  --muted: #5b5578;
+  --line: rgba(44, 28, 104, 0.14);
   --radius: 18px;
-  --shadow: 0 18px 50px -28px rgba(13, 24, 38, 0.45);
+  --shadow: 0 18px 50px -28px rgba(20, 13, 51, 0.5);
   --font-head: 'Fraunces', Georgia, 'Times New Roman', serif;
   --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
 }
@@ -78,7 +80,7 @@ a {
 }
 
 .accent {
-  color: var(--gold);
+  color: var(--gold-ink);
 }
 
 .eyebrow {
@@ -86,7 +88,7 @@ a {
   font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--navy-soft);
   margin-bottom: 0.9em;
 }
 
@@ -104,7 +106,7 @@ a {
 
 .site-header.is-scrolled {
   border-bottom-color: var(--line);
-  box-shadow: 0 10px 30px -24px rgba(13, 24, 38, 0.5);
+  box-shadow: 0 10px 30px -24px rgba(20, 13, 51, 0.5);
 }
 
 .header-inner {
@@ -254,7 +256,8 @@ a {
   position: relative;
   padding: clamp(3.5rem, 8vw, 6.5rem) 0 clamp(3rem, 6vw, 5rem);
   background:
-    radial-gradient(1100px 460px at 82% -10%, rgba(200, 161, 90, 0.22), transparent 62%),
+    radial-gradient(900px 420px at 85% -15%, rgba(67, 48, 143, 0.16), transparent 60%),
+    radial-gradient(700px 380px at 5% 110%, rgba(217, 168, 60, 0.14), transparent 65%),
     linear-gradient(180deg, var(--cream) 0%, var(--white) 100%);
   overflow: hidden;
 }
@@ -389,7 +392,7 @@ a {
 .card:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow);
-  border-color: rgba(200, 161, 90, 0.55);
+  border-color: rgba(67, 48, 143, 0.45);
 }
 
 .card-icon {
@@ -398,7 +401,7 @@ a {
   width: 48px;
   height: 48px;
   border-radius: 14px;
-  background: rgba(200, 161, 90, 0.16);
+  background: rgba(67, 48, 143, 0.1);
   font-size: 1.35rem;
   margin-bottom: 1.1rem;
 }
@@ -532,6 +535,132 @@ a {
   color: var(--gold);
 }
 
+/* Foto del negozio */
+
+.store-split {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: clamp(2rem, 4vw, 3.4rem);
+  align-items: start;
+}
+
+.store-photo {
+  margin: 0;
+  padding: 10px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: calc(var(--radius) + 8px);
+  box-shadow: var(--shadow);
+}
+
+.store-photo picture,
+.store-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+}
+
+.store-photo figcaption {
+  padding: 0.7rem 0.35rem 0.15rem;
+  font-size: 0.82rem;
+  letter-spacing: 0.02em;
+  color: var(--muted);
+}
+
+.store-body .list {
+  margin-top: 1.6rem;
+}
+
+/* Mappa */
+
+.map-block {
+  margin-top: 1.2rem;
+}
+
+.map-frame {
+  position: relative;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  min-height: 420px;
+  background: var(--cream);
+}
+
+.map-frame iframe {
+  display: block;
+  width: 100%;
+  height: 420px;
+  border: 0;
+}
+
+.map-placeholder {
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 0.35rem;
+  width: 100%;
+  height: 420px;
+  padding: 2rem 1.5rem;
+  border: 0;
+  cursor: pointer;
+  text-align: center;
+  color: var(--navy);
+  background:
+    radial-gradient(600px 260px at 50% 0%, rgba(67, 48, 143, 0.12), transparent 70%),
+    var(--cream);
+  transition: background 0.25s ease;
+}
+
+.map-placeholder:hover {
+  background:
+    radial-gradient(600px 260px at 50% 0%, rgba(67, 48, 143, 0.2), transparent 70%),
+    var(--cream);
+}
+
+.map-pin {
+  display: grid;
+  place-items: center;
+  width: 58px;
+  height: 58px;
+  margin-bottom: 0.5rem;
+  border-radius: 50%;
+  color: var(--navy-soft);
+  background: rgba(67, 48, 143, 0.12);
+}
+
+.map-placeholder strong {
+  font-family: var(--font-head);
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.map-placeholder small {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.map-placeholder em {
+  max-width: 40ch;
+  margin-top: 0.9rem;
+  font-style: normal;
+  font-size: 0.76rem;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.map-link {
+  display: inline-block;
+  margin-top: 0.85rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--navy-soft);
+}
+
+.map-link:hover {
+  color: var(--gold-ink);
+}
+
 /* Footer */
 
 .site-footer {
@@ -566,6 +695,7 @@ a {
 
 @media (max-width: 900px) {
   .split,
+  .store-split,
   .grid-2 {
     grid-template-columns: 1fr;
   }
@@ -591,7 +721,7 @@ a {
     padding: 1.4rem 4vw 1.8rem;
     background: var(--white);
     border-bottom: 1px solid var(--line);
-    box-shadow: 0 24px 40px -30px rgba(13, 24, 38, 0.6);
+    box-shadow: 0 24px 40px -30px rgba(20, 13, 51, 0.6);
     display: none;
   }
 

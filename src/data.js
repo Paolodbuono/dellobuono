@@ -1,6 +1,6 @@
 export const negozio = {
   nome: 'Negozio Dello Buono',
-  claim: 'Casalinghi, elettronica e telefonia nel cuore di Montella',
+  claim: 'Elettrodomestici, regali e liste nozze nel cuore di Montella',
   indirizzo: 'Via del Corso 162-164',
   cap: '83048 Montella (AV)',
   telefono: '0827 61162',
@@ -17,45 +17,45 @@ export const orari = [
 
 export const reparti = [
   {
-    titolo: 'Casalinghi e cucina',
+    titolo: 'Elettrodomestici',
     testo:
-      'Pentole, padelle, stoviglie, contenitori e tutto ciò che serve per apparecchiare e cucinare ogni giorno.',
-    icona: '🍳',
-  },
-  {
-    titolo: 'Elettronica e piccoli elettrodomestici',
-    testo:
-      'Piccoli elettrodomestici, accessori e prodotti per la casa selezionati tra le marche più affidabili.',
+      'Grandi e piccoli elettrodomestici, con consegna a domicilio, installazione e assistenza post-vendita.',
     icona: '🔌',
   },
   {
-    titolo: 'Telefonia e connettività',
+    titolo: 'Regali e liste nozze',
     testo:
-      'Ricariche, offerte e assistenza per le principali reti: Fastweb, Vodafone e WindTre.',
-    icona: '📱',
+      'Un servizio dedicato alle liste di nozze e una selezione di idee regalo per matrimoni, battesimi e ricorrenze.',
+    icona: '🎁',
   },
   {
-    titolo: 'Idee regalo e oggettistica',
+    titolo: 'Casalinghi e tavola',
     testo:
-      'Bicchieri, decanter, complementi d’arredo e idee regalo per rendere speciale ogni occasione.',
-    icona: '🎁',
+      'Pentole, stoviglie, bicchieri, decanter e complementi per apparecchiare e ricevere gli ospiti.',
+    icona: '🍽️',
+  },
+  {
+    titolo: 'Telefonia e ricariche',
+    testo:
+      'Ricariche, offerte e assistenza per le principali reti, direttamente in negozio.',
+    icona: '📱',
   },
 ]
 
 export const puntiForza = [
   {
-    titolo: 'Un negozio di paese, con la scelta di una città',
+    titolo: 'Rivenditore autorizzato',
     testo:
-      'Migliaia di articoli in esposizione tra casalinghi, elettronica e regalo: trovi subito quello che cerchi, senza aspettare spedizioni.',
+      'Prodotti delle migliori marche, con garanzia e assistenza gestita qui, senza dover scrivere a un call center.',
   },
   {
     titolo: 'Consiglio vero, di persona',
     testo:
-      'Ti aiutiamo a scegliere il prodotto giusto, ti spieghiamo come usarlo e ti seguiamo anche dopo l’acquisto.',
+      'Ti aiutiamo a scegliere il modello giusto per la tua casa, ti spieghiamo come usarlo e ti seguiamo anche dopo l’acquisto.',
   },
   {
-    titolo: 'Servizi di telefonia',
+    titolo: 'Liste di nozze seguite passo per passo',
     testo:
-      'Attivazioni, ricariche, configurazioni e assistenza per Fastweb, Vodafone e WindTre, direttamente in negozio.',
+      'Dalla scelta dei regali alla composizione della lista: un servizio curato, per gli sposi e per chi partecipa.',
   },
 ]

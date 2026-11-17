@@ -1,5 +1,10 @@
+import { useState } from 'react'
 import Header from './components/Header'
+import fotoNegozioJpg from './assets/negozio.jpg'
+import fotoNegozioWebp from './assets/negozio.webp'
 import { negozio, reparti, puntiForza, orari } from './data'
+
+const MAPS_QUERY = 'Via del Corso 162, 83048 Montella AV'
 
 function Hero() {
   return (
@@ -71,30 +76,95 @@ function Reparti() {
 function Negozio() {
   return (
     <section className="section section-alt" id="negozio">
-      <div className="wrap split">
-        <div>
+      <div className="wrap">
+        <div className="section-head">
           <p className="eyebrow">Il negozio</p>
           <h2>Una bottega storica, con lo sguardo al presente</h2>
-          <p className="muted">
-            Dello Buono è un punto di riferimento a Montella per chi cerca qualcosa di
-            concreto: un prodotto che dura, un consiglio sincero, un servizio che funziona.
-          </p>
-          <p className="muted">
-            Qui si entra per una padella e si esce con un regalo per un amico. Perché le
-            cose belle per la casa sono anche le cose belle da regalare.
-          </p>
         </div>
 
-        <ul className="list">
-          {puntiForza.map((p) => (
-            <li key={p.titolo}>
-              <h3>{p.titolo}</h3>
-              <p>{p.testo}</p>
-            </li>
-          ))}
-        </ul>
+        <div className="store-split">
+          <figure className="store-photo">
+            <picture>
+              <source srcSet={fotoNegozioWebp} type="image/webp" />
+              <img
+                src={fotoNegozioJpg}
+                alt="La vetrina del Negozio Dello Buono in Via del Corso a Montella"
+                loading="lazy"
+                decoding="async"
+                width="1209"
+                height="833"
+              />
+            </picture>
+            <figcaption>La nostra vetrina in Via del Corso 162-164</figcaption>
+          </figure>
+
+          <div className="store-body">
+            <p className="muted">
+              Dello Buono è un punto di riferimento a Montella per chi cerca qualcosa di
+              concreto: un elettrodomestico che dura, un regalo pensato bene, un consiglio
+              sincero.
+            </p>
+            <p className="muted">
+              Qui si entra per una padella e si esce con un regalo per un amico. E per chi
+              si sposa c’è un servizio di liste di nozze seguito passo per passo.
+            </p>
+
+            <ul className="list">
+              {puntiForza.map((p) => (
+                <li key={p.titolo}>
+                  <h3>{p.titolo}</h3>
+                  <p>{p.testo}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
       </div>
     </section>
+  )
+}
+
+function MappaNegozio() {
+  const [attiva, setAttiva] = useState(false)
+  const src = `https://www.google.com/maps?q=${encodeURIComponent(MAPS_QUERY)}&z=17&hl=it&output=embed`
+
+  return (
+    <div className="map-block">
+      <div className="map-frame">
+        {attiva ? (
+          <iframe
+            title="Mappa: Negozio Dello Buono, Via del Corso 162, Montella"
+            src={src}
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            allowFullScreen
+          />
+        ) : (
+          <button type="button" className="map-placeholder" onClick={() => setAttiva(true)}>
+            <span className="map-pin" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="30" height="30" fill="none" aria-hidden="true">
+                <path
+                  d="M12 21s7-6.1 7-11a7 7 0 1 0-14 0c0 4.9 7 11 7 11Z"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinejoin="round"
+                />
+                <circle cx="12" cy="10" r="2.6" fill="currentColor" />
+              </svg>
+            </span>
+            <strong>Carica la mappa di Google</strong>
+            <small>Via del Corso 162-164 · Montella</small>
+            <em>
+              La mappa si collega a Google solo quando la apri: nessun cookie di terze
+              parti prima del tuo consenso.
+            </em>
+          </button>
+        )}
+      </div>
+      <a className="map-link" href={negozio.mapsUrl} target="_blank" rel="noreferrer">
+        Apri in Google Maps →
+      </a>
+    </div>
   )
 }
 
@@ -161,16 +231,13 @@ function OrariContatti() {
                 <a href={`mailto:${negozio.email}`}>{negozio.email}</a>
               </li>
             </ul>
-            <a
-              className="btn btn-primary full"
-              href={negozio.mapsUrl}
-              target="_blank"
-              rel="noreferrer"
-            >
-              Apri la mappa
+            <a className="btn btn-primary full" href={`tel:${tel}`}>
+              Chiama ora
             </a>
           </div>
         </div>
+
+        <MappaNegozio />
       </div>
     </section>
   )

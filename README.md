@@ -71,13 +71,35 @@ anima le SVG), ed è una scelta voluta per non avere un'icona illeggibile a 16 p
 
 ### Personalizzare i colori
 
-In cima a `src/styles.css`, nel blocco `:root`:
+In cima a `src/styles.css`, nel blocco `:root`. La palette viene dal logo e
+dall'insegna del negozio (indaco + giallo):
 
 ```css
---navy: #12263f;  /* blu principale */
---gold: #c8a15a;  /* accento oro */
---cream: #f8f5f0; /* sfondo chiaro */
+--navy: #2c1c68;      /* indaco del logo — colore principale */
+--navy-soft: #43308f; /* indaco più chiaro, link e dettagli */
+--gold: #d9a83c;      /* giallo dell'insegna, solo decorativo */
+--gold-ink: #9c7418;  /* giallo scurito: unico usabile come testo su chiaro */
+--cream: #f4f2fb;     /* lilla chiarissimo, sfondi alternati */
+--ink: #140d33;       /* testo */
 ```
+
+Regola: il giallo pieno ha poco contrasto su bianco, quindi per il testo si usa
+`--gold-ink`; il giallo puro resta su bordi, icone e superfici scure.
+
+### Foto del negozio
+
+`src/assets/negozio-originale.png` è lo scatto originale; il sito usa le
+versioni ottimizzate `negozio.jpg` (154 kB) e `negozio.webp` (83 kB), servite
+con `<picture>` così ogni browser prende la più leggera.
+
+### Mappa
+
+Nella sezione Contatti c'è una mappa Google **con caricamento su clic**: nessuna
+richiesta a Google finché il visitatore non la apre (niente cookie di terze
+parti prima del consenso). Usa l'embed classico
+`https://www.google.com/maps?q=…&output=embed`, che non richiede API key né
+fatturazione. Per cambiare indirizzo si modifica `MAPS_QUERY` in `src/App.jsx`.
+
 
 ## Pubblicare su Aruba (hosting Linux)
 
