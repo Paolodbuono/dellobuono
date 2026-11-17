@@ -38,20 +38,35 @@ Tutti i testi, i recapiti, gli orari e i reparti stanno in un unico file:
 
 ### Logo
 
-Il file originale del logo è `images.jpg` nella radice del progetto (va bene
-così: Vite lo importa e lo ottimizza nel build).
+File originale: `src/assets/logo-originale.jpg` (non cancellarlo, serve per
+rigenerare gli asset).
 
-- In alto a sinistra viene mostrato un **medaglione circolare** in cui si vede
-  solo il monogramma DB, che **ruota** (16 s per giro). Le scritte DELLO/BUONO
-  restano fuori dal ritaglio, quindi non girano mai.
-- Il ritaglio si regola in `src/styles.css`, su `.logo-spinner`:
-  - `background-size: 172%` → quanto zoom sul monogramma (aumenta = più zoom)
-  - `background-position: 50.5% 52%` → centratura del ritaglio
-- La rotazione si disattiva da sola con "Riduci animazioni" attivo nel sistema.
-- Favicon della scheda: `public/favicon.png`.
+Asset generati in `public/` dallo script `tools/prepare-logo.py`:
 
-Se vuoi tornare al logo intero (scritta inclusa) senza rotazione, basta
-sostituire `<Logo size={54} />` in `Header.jsx` con un `<img src="…">`.
+| file | uso |
+| --- | --- |
+| `logo-full.png` | logo completo trasparente, usato nell'header |
+| `favicon.png` / `favicon.ico` | icona della scheda: monogramma su disco bianco, angoli trasparenti |
+| `monogram.png` | solo il monogramma DB, trasparente (per usi futuri) |
+
+Il monogramma viene isolato per **componenti connesse** (non con ritagli a
+occhio): lo script analizza i pixel, tiene i due gruppi centrali ed esclude
+scritte e archi laterali. Per rigenerare:
+
+```bash
+python tools/prepare-logo.py
+```
+
+Animazione nell'header (`src/styles.css`, `.brand-logo.is-animated`): flip
+tridimensionale sull'asse X con prospettiva — 30% del tempo fermo, poi un giro
+completo, poi di nuovo fermo (9 s per ciclo). Si disattiva con "Riduci
+animazioni" attivo nel sistema. Per un'inclinazione più morbida invece del giro
+completo, sostituisci il keyframe `logo-flip` con un'oscillazione
+`rotateX(-28deg)` ↔ `rotateX(28deg)`.
+
+La favicon è statica: nessun browser anima favicon PNG/ICO (solo Firefox
+anima le SVG), ed è una scelta voluta per non avere un'icona illeggibile a 16 px.
+
 
 
 ### Personalizzare i colori
