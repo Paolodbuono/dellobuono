@@ -1,6 +1,6 @@
 export const negozio = {
   nome: 'Negozio Dello Buono',
-  claim: 'Elettrodomestici, regali e liste nozze nel cuore di Montella',
+  claim: 'Elettrodomestici, regali e casalinghi nel cuore di Montella',
   indirizzo: 'Via del Corso 162-164',
   cap: '83048 Montella (AV)',
   telefono: '0827 61162',
@@ -20,15 +20,15 @@ export const reparti = [
     numero: '01',
     titolo: 'Elettrodomestici',
     testo:
-      'Grandi e piccoli elettrodomestici delle migliori marche, con consegna a domicilio, installazione e assistenza seguita qui in negozio.',
+      'Grandi e piccoli elettrodomestici per la casa: cucine, frigoriferi, lavatrici, forni e piccoli elettrodomestici.',
     icona: 'elettrodomestici',
     grande: true,
   },
   {
     numero: '02',
-    titolo: 'Regali e liste nozze',
+    titolo: 'Regali',
     testo:
-      'Liste di nozze curate passo per passo e idee regalo per matrimoni, battesimi e ricorrenze.',
+      'Idee regalo per matrimoni, battesimi, comunioni e compleanni, con la mano di chi ti conosce.',
     icona: 'regalo',
     grande: true,
   },
@@ -61,18 +61,17 @@ export const puntiForza = [
   },
   {
     numero: '03',
-    titolo: 'Liste di nozze seguite',
+    titolo: 'Regali per ogni occasione',
     testo:
-      'Dalla scelta dei regali alla composizione della lista: un servizio curato, per gli sposi e per chi partecipa.',
+      'Matrimoni, battesimi, comunioni, compleanni: ti aiutiamo a trovare il pensiero giusto, senza sbagliare.',
   },
 ]
 
 export const marquee = [
   'Elettrodomestici',
   'Regali',
-  'Liste nozze',
   'Casalinghi',
-  'Consegna a domicilio',
+  'Regali per ogni occasione',
   'Assistenza',
   'Montella',
 ]

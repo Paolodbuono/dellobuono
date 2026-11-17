@@ -57,13 +57,13 @@ function Hero() {
           <h1 className="hero-title">
             <span>Elettrodomestici,</span>
             <span>
-              regali e <em>liste nozze.</em>
+              <em>regali</em> e casalinghi.
             </span>
           </h1>
 
           <p className="hero-lead">
-            Un negozio di persona, in centro a Montella: consigli veri, consegna a
-            domicilio e liste di nozze seguite passo per passo.
+            Un negozio di persona, in centro a Montella: consigli veri, assistenza fatta
+            qui e una scelta di regali che non trovi al supermercato.
           </p>
 
           <div className="hero-actions">
@@ -82,7 +82,6 @@ function Hero() {
           <figure className="hero-photo">
             <FotoNegozio />
           </figure>
-          <span className="hero-chip">Consegna e installazione</span>
         </div>
       </div>
 
@@ -93,11 +92,11 @@ function Hero() {
         </div>
         <div>
           <strong>Elettrodomestici</strong>
-          <span>Grandi e piccoli, assistenza in negozio</span>
+          <span>Grandi e piccoli, per tutta la casa</span>
         </div>
         <div>
-          <strong>Regali &amp; liste nozze</strong>
-          <span>Un servizio curato, senza fretta</span>
+          <strong>Regali e idee</strong>
+          <span>Per le occasioni che contano</span>
         </div>
       </div>
     </section>
@@ -333,7 +332,7 @@ function Cta() {
         </a>
         <p className="cta-text">
           Ti aspettiamo in Via del Corso, dal lunedì al sabato. Per un consiglio veloce,
-          una lista nozze o un preventivo, chiamaci.
+          un regalo o un preventivo, chiamaci.
         </p>
       </div>
     </section>

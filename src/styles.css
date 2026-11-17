@@ -517,21 +517,7 @@ img {
   transition: transform 0.6s var(--ease);
 }
 
-/* velo indaco: la stessa foto del negozio, ma con un trattamento diverso */
-.hero-photo::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: linear-gradient(
-    205deg,
-    rgba(44, 28, 104, 0.62) 0%,
-    rgba(20, 12, 48, 0.24) 50%,
-    rgba(224, 173, 62, 0.22) 100%
-  );
-  mix-blend-mode: multiply;
-}
-
+/* foto naturale, senza filtri: i colori dell'insegna sono già la palette */
 .hero-photo:hover {
   transform: rotate(0deg);
 }
@@ -544,21 +530,6 @@ img {
   aspect-ratio: 5 / 4;
   object-fit: cover;
   object-position: 50% 42%;
-  filter: saturate(1.04) contrast(1.03);
-}
-
-.hero-chip {
-  position: absolute;
-  left: -14px;
-  bottom: 20px;
-  padding: 0.5rem 0.85rem;
-  border-radius: 10px;
-  background: var(--gold);
-  color: #1a1105;
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  box-shadow: 0 18px 30px -20px rgba(0, 0, 0, 0.8);
 }
 
 .hero-foot {
@@ -801,12 +772,13 @@ img {
   background: var(--indigo-600);
 }
 
-.bento-quote-text {
+.bento-card .bento-quote-text {
   margin: 0;
   font-family: var(--font-head);
   font-size: clamp(1.15rem, 1.7vw, 1.35rem);
   line-height: 1.25;
   letter-spacing: -0.015em;
+  color: var(--white);
 }
 
 .bento-quote-by {
@@ -1203,11 +1175,6 @@ img {
   .bento-wide,
   .bento-quote {
     grid-column: span 1;
-  }
-
-  .hero-chip {
-    left: 8px;
-    bottom: 8px;
   }
 
   .footer-word {

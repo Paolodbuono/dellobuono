@@ -152,7 +152,7 @@ senza modifiche.
 ## Prossimi passi possibili
 
 - [ ] Foto dei reparti e degli interni (oggi c'è solo la vetrina)
-- [ ] Pagina dedicata alle liste nozze o alle offerte telefonia
+- [ ] Pagina dedicata ai regali o alle offerte telefonia
 - [ ] Collegamento a Instagram/Facebook
 - [ ] Modulo contatti (richiede un servizio esterno o PHP su Aruba)
 - [ ] Pubblicazione su Aruba via FTP
