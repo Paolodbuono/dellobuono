@@ -1,46 +1,122 @@
 import { useState } from 'react'
 import Header from './components/Header'
+import Reveal from './components/Reveal'
+import StatoApertura from './components/StatoApertura'
+import {
+  IconElettrodomestici,
+  IconRegalo,
+  IconTavola,
+  IconTelefono,
+  IconPin,
+  IconArrow,
+  IconPhone,
+} from './components/Icons'
 import fotoNegozioJpg from './assets/negozio.jpg'
 import fotoNegozioWebp from './assets/negozio.webp'
-import { negozio, reparti, puntiForza, orari } from './data'
+import { negozio, reparti, puntiForza, orari, marquee } from './data'
+
+const ICONE = {
+  elettrodomestici: IconElettrodomestici,
+  regalo: IconRegalo,
+  tavola: IconTavola,
+  telefono: IconTelefono,
+}
 
 const MAPS_QUERY = 'Via del Corso 162, 83048 Montella AV'
+const tel = negozio.telefono.replace(/\s/g, '')
+
+function FotoNegozio({ className = '' }) {
+  return (
+    <picture className={className}>
+      <source srcSet={fotoNegozioWebp} type="image/webp" />
+      <img
+        src={fotoNegozioJpg}
+        alt="La vetrina del Negozio Dello Buono in Via del Corso a Montella"
+        loading="lazy"
+        decoding="async"
+        width="1209"
+        height="833"
+      />
+    </picture>
+  )
+}
 
 function Hero() {
   return (
     <section className="hero" id="top">
-      <div className="wrap hero-inner">
-        <p className="eyebrow">Montella · dal cuore dell’Irpinia</p>
-        <h1>
-          Tutto per la casa,
-          <br />
-          <span className="accent">a due passi da te.</span>
-        </h1>
-        <p className="lead">{negozio.claim}</p>
-        <div className="hero-actions">
-          <a className="btn btn-primary" href="#reparti">
-            Scopri i reparti
-          </a>
-          <a className="btn btn-ghost" href="#contatti">
-            Come raggiungerci
-          </a>
+      <div className="hero-glow" aria-hidden="true" />
+      <div className="wrap hero-grid">
+        <div className="hero-copy">
+          <p className="hero-kicker">
+            <IconPin />
+            Montella (AV) · Via del Corso 162-164
+            <span className="kicker-sep" aria-hidden="true" />
+            <StatoApertura />
+          </p>
+
+          <h1 className="hero-title">
+            <span>Elettrodomestici,</span>
+            <span>
+              regali e <em>liste nozze.</em>
+            </span>
+          </h1>
+
+          <p className="hero-lead">
+            Un negozio di persona, in centro a Montella: consigli veri, consegna a
+            domicilio e liste di nozze seguite passo per passo.
+          </p>
+
+          <div className="hero-actions">
+            <a className="btn btn-light" href="#negozio">
+              Vieni a trovarci
+              <IconArrow />
+            </a>
+            <a className="btn btn-outline-light" href={`tel:${tel}`}>
+              <IconPhone />
+              {negozio.telefono}
+            </a>
+          </div>
         </div>
-        <ul className="hero-facts">
-          <li>
-            <strong>Lun – Sab</strong>
-            <span>8:30–13:00 · 16:30–20:00</span>
-          </li>
-          <li>
-            <strong>Via del Corso 162-164</strong>
-            <span>83048 Montella (AV)</span>
-          </li>
-          <li>
-            <strong>{negozio.telefono}</strong>
-            <span>Chiamaci, rispondiamo subito</span>
-          </li>
-        </ul>
+
+        <div className="hero-media">
+          <figure className="hero-photo">
+            <FotoNegozio />
+          </figure>
+          <span className="hero-chip">Consegna e installazione</span>
+        </div>
+      </div>
+
+      <div className="wrap hero-foot">
+        <div>
+          <strong>Lun – Sab</strong>
+          <span>8:30–13:00 · 16:30–20:00</span>
+        </div>
+        <div>
+          <strong>Elettrodomestici</strong>
+          <span>Grandi e piccoli, assistenza in negozio</span>
+        </div>
+        <div>
+          <strong>Regali &amp; liste nozze</strong>
+          <span>Un servizio curato, senza fretta</span>
+        </div>
       </div>
     </section>
+  )
+}
+
+function Marquee() {
+  const voci = [...marquee, ...marquee]
+  return (
+    <div className="marquee" aria-hidden="true">
+      <div className="marquee-track">
+        {voci.map((v, i) => (
+          <span key={`${v}-${i}`}>
+            {v}
+            <i>✦</i>
+          </span>
+        ))}
+      </div>
+    </div>
   )
 }
 
@@ -48,25 +124,45 @@ function Reparti() {
   return (
     <section className="section" id="reparti">
       <div className="wrap">
-        <div className="section-head">
-          <p className="eyebrow">I reparti</p>
-          <h2>C’è tutto quello che non trovi altrove</h2>
-          <p className="muted">
-            Un unico negozio per la casa, la tecnologia e i regali: entra, guarda, tocca e
-            chiedi. Ti diamo una mano a scegliere.
+        <Reveal className="section-head">
+          <p className="kicker">
+            <em>01</em> I reparti
           </p>
-        </div>
+          <h2 className="display">
+            Tutto quello che serve,
+            <br />
+            <span className="muted-ink">in un solo indirizzo.</span>
+          </h2>
+        </Reveal>
 
-        <div className="cards">
-          {reparti.map((r) => (
-            <article className="card" key={r.titolo}>
-              <span className="card-icon" aria-hidden="true">
-                {r.icona}
-              </span>
-              <h3>{r.titolo}</h3>
-              <p>{r.testo}</p>
-            </article>
-          ))}
+        <div className="bento">
+          {reparti.map((r, i) => {
+            const Icona = ICONE[r.icona]
+            return (
+              <Reveal
+                key={r.titolo}
+                as="article"
+                delay={i * 70}
+                className={`bento-card ${r.grande ? 'bento-wide' : ''}`}
+              >
+                <div className="bento-top">
+                  <span className="bento-num">{r.numero}</span>
+                  <span className="bento-icon">
+                    <Icona />
+                  </span>
+                </div>
+                <h3>{r.titolo}</h3>
+                <p>{r.testo}</p>
+              </Reveal>
+            )
+          })}
+
+          <Reveal as="article" delay={280} className="bento-card bento-quote">
+            <p className="bento-quote-text">
+              «Si entra per una padella e si esce con un regalo per un amico.»
+            </p>
+            <span className="bento-quote-by">Il banco, ogni giorno</span>
+          </Reveal>
         </div>
       </div>
     </section>
@@ -76,60 +172,53 @@ function Reparti() {
 function Negozio() {
   return (
     <section className="section section-alt" id="negozio">
-      <div className="wrap">
-        <div className="section-head">
-          <p className="eyebrow">Il negozio</p>
-          <h2>Una bottega storica, con lo sguardo al presente</h2>
-        </div>
-
-        <div className="store-split">
+      <div className="wrap store-grid">
+        <Reveal className="store-visual">
           <figure className="store-photo">
-            <picture>
-              <source srcSet={fotoNegozioWebp} type="image/webp" />
-              <img
-                src={fotoNegozioJpg}
-                alt="La vetrina del Negozio Dello Buono in Via del Corso a Montella"
-                loading="lazy"
-                decoding="async"
-                width="1209"
-                height="833"
-              />
-            </picture>
-            <figcaption>La nostra vetrina in Via del Corso 162-164</figcaption>
+            <FotoNegozio />
           </figure>
+          <span className="store-caption">La vetrina di Via del Corso 162-164</span>
+        </Reveal>
 
-          <div className="store-body">
-            <p className="muted">
+        <div className="store-body">
+          <Reveal>
+            <p className="kicker">
+              <em>02</em> Il negozio
+            </p>
+            <h2 className="display">
+              Una bottega <span className="muted-ink">storica</span>, con lo sguardo al
+              presente.
+            </h2>
+            <p className="lead-soft">
               Dello Buono è un punto di riferimento a Montella per chi cerca qualcosa di
               concreto: un elettrodomestico che dura, un regalo pensato bene, un consiglio
               sincero.
             </p>
-            <p className="muted">
-              Qui si entra per una padella e si esce con un regalo per un amico. E per chi
-              si sposa c’è un servizio di liste di nozze seguito passo per passo.
-            </p>
+          </Reveal>
 
-            <ul className="list">
-              {puntiForza.map((p) => (
-                <li key={p.titolo}>
+          <ul className="points">
+            {puntiForza.map((p, i) => (
+              <Reveal as="li" key={p.titolo} delay={i * 80}>
+                <span className="points-num">{p.numero}</span>
+                <div>
                   <h3>{p.titolo}</h3>
                   <p>{p.testo}</p>
-                </li>
-              ))}
-            </ul>
-          </div>
+                </div>
+              </Reveal>
+            ))}
+          </ul>
         </div>
       </div>
     </section>
   )
 }
 
-function MappaNegozio() {
+function Mappa() {
   const [attiva, setAttiva] = useState(false)
   const src = `https://www.google.com/maps?q=${encodeURIComponent(MAPS_QUERY)}&z=17&hl=it&output=embed`
 
   return (
-    <div className="map-block">
+    <div className="map-card" id="mappa">
       <div className="map-frame">
         {attiva ? (
           <iframe
@@ -142,17 +231,9 @@ function MappaNegozio() {
         ) : (
           <button type="button" className="map-placeholder" onClick={() => setAttiva(true)}>
             <span className="map-pin" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="30" height="30" fill="none" aria-hidden="true">
-                <path
-                  d="M12 21s7-6.1 7-11a7 7 0 1 0-14 0c0 4.9 7 11 7 11Z"
-                  stroke="currentColor"
-                  strokeWidth="1.8"
-                  strokeLinejoin="round"
-                />
-                <circle cx="12" cy="10" r="2.6" fill="currentColor" />
-              </svg>
+              <IconPin />
             </span>
-            <strong>Carica la mappa di Google</strong>
+            <strong>Carica la mappa</strong>
             <small>Via del Corso 162-164 · Montella</small>
             <em>
               La mappa si collega a Google solo quando la apri: nessun cookie di terze
@@ -162,25 +243,33 @@ function MappaNegozio() {
         )}
       </div>
       <a className="map-link" href={negozio.mapsUrl} target="_blank" rel="noreferrer">
-        Apri in Google Maps →
+        Apri in Google Maps <IconArrow />
       </a>
     </div>
   )
 }
 
-function OrariContatti() {
-  const tel = negozio.telefono.replace(/\s/g, '')
+function DoveSiamo() {
   return (
-    <section className="section" id="orari">
+    <section className="section section-dark" id="orari">
       <div className="wrap">
-        <div className="section-head">
-          <p className="eyebrow">Orari e contatti</p>
-          <h2>Ti aspettiamo in Via del Corso</h2>
-        </div>
+        <Reveal className="section-head">
+          <p className="kicker kicker-light">
+            <em>03</em> Dove siamo
+          </p>
+          <h2 className="display">
+            In centro a Montella,
+            <br />
+            <span className="gold-ink">facile da raggiungere.</span>
+          </h2>
+        </Reveal>
 
-        <div className="grid-2" id="contatti">
-          <div className="panel">
-            <h3>Orari di apertura</h3>
+        <div className="dove-grid">
+          <Reveal className="dove-info">
+            <div className="stato-riga">
+              <StatoApertura className="stato-grande" />
+            </div>
+
             <table className="orari">
               <thead>
                 <tr>
@@ -199,45 +288,53 @@ function OrariContatti() {
                 ))}
               </tbody>
             </table>
-            <p className="small muted">
-              In occasione delle festività gli orari possono variare: chiamaci per conferma.
-            </p>
-          </div>
 
-          <div className="panel">
-            <h3>Dove siamo</h3>
             <address className="address">
-              <strong>{negozio.nome}</strong>
-              <br />
               {negozio.indirizzo}
               <br />
               {negozio.cap}
             </address>
+
             <ul className="contact-list">
               <li>
-                <span>Telefono</span>
                 <a href={`tel:${tel}`}>{negozio.telefono}</a>
               </li>
               {negozio.telefono2 && (
                 <li>
-                  <span>Secondo numero</span>
                   <a href={`tel:${negozio.telefono2.replace(/\s/g, '')}`}>
                     {negozio.telefono2}
                   </a>
                 </li>
               )}
               <li>
-                <span>Email</span>
                 <a href={`mailto:${negozio.email}`}>{negozio.email}</a>
               </li>
             </ul>
-            <a className="btn btn-primary full" href={`tel:${tel}`}>
-              Chiama ora
-            </a>
-          </div>
-        </div>
+          </Reveal>
 
-        <MappaNegozio />
+          <Reveal delay={120} className="dove-map">
+            <Mappa />
+          </Reveal>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function Cta() {
+  return (
+    <section className="cta">
+      <div className="wrap cta-inner">
+        <p className="kicker">
+          <em>04</em> Passa a trovarci
+        </p>
+        <a className="cta-phone" href={`tel:${tel}`}>
+          {negozio.telefono}
+        </a>
+        <p className="cta-text">
+          Ti aspettiamo in Via del Corso, dal lunedì al sabato. Per un consiglio veloce,
+          una lista nozze o un preventivo, chiamaci.
+        </p>
       </div>
     </section>
   )
@@ -246,14 +343,16 @@ function OrariContatti() {
 function Footer() {
   return (
     <footer className="site-footer">
-      <div className="wrap footer-inner">
-        <div>
-          <strong>{negozio.nome}</strong>
-          <p className="small">
-            {negozio.indirizzo} — {negozio.cap}
+      <div className="wrap">
+        <p className="footer-word" aria-hidden="true">
+          Dello Buono
+        </p>
+        <div className="footer-riga">
+          <p>
+            {negozio.nome} · {negozio.indirizzo} · {negozio.cap}
           </p>
+          <p className="muted">© {new Date().getFullYear()} Negozio Dello Buono</p>
         </div>
-        <p className="small muted">© {new Date().getFullYear()} Negozio Dello Buono</p>
       </div>
     </footer>
   )
@@ -265,9 +364,11 @@ export default function App() {
       <Header />
       <main>
         <Hero />
+        <Marquee />
         <Reparti />
         <Negozio />
-        <OrariContatti />
+        <DoveSiamo />
+        <Cta />
       </main>
       <Footer />
     </>

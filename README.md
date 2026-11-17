@@ -30,11 +30,63 @@ npm run preview  # anteprima del build
 
 Tutti i testi, i recapiti, gli orari e i reparti stanno in un unico file:
 
-- `src/data.js` — nome, indirizzo, telefoni, email, orari, reparti, punti di forza
-- `src/App.jsx` — struttura delle sezioni (hero, reparti, negozio, orari/contatti)
-- `src/components/Header.jsx` — menu e link
-- `src/components/Logo.jsx` — medaglione con il monogramma che ruota
-- `src/styles.css` — colori e tipografia
+- `src/data.js` — nome, indirizzo, telefoni, email, orari, reparti, punti di forza, marquee
+- `src/lib/orari.js` — orario settimanale usato per calcolare "Aperto / Chiuso"
+- `src/App.jsx` — struttura delle sezioni (hero, marquee, reparti, negozio, dove siamo, CTA)
+- `src/components/Header.jsx` — barra flottante, menu, drawer mobile
+- `src/components/Logo.jsx` — logo animato
+- `src/components/Reveal.jsx` — animazione d'ingresso allo scroll (IntersectionObserver)
+- `src/components/Icons.jsx` — icone SVG disegnate a mano (niente emoji, niente librerie)
+- `src/styles.css` — design system: colori, tipografia, spaziature
+
+## Design system (2026)
+
+Scelte e perché:
+
+- **Tipografia editoriale** — Fraunces variabile per i titoli (con gli assi `SOFT` e
+  `WONK` attivi, che danno carattere) e Inter per il testo. Titoli grandi, tracking
+  negativo, interlinea stretta: è il tratto più riconoscibile dei siti 2026.
+- **Bento grid** per i reparti: una griglia a 6 colonne con celle di dimensione
+  diversa, divisori da 2 px e niente ombre — layout "a compartimenti" invece delle
+  solite card tutte uguali.
+- **Angoli 10-18 px, poche pillole**: dai dati sui siti award-level il raggio
+  mediano è ~10 px e solo il 12% usa bottoni a pillola. Qui i bottoni sono 12 px.
+- **Animazioni leggere**: solo CSS + IntersectionObserver. Niente scroll-jacking,
+  niente parallax pesante. Ogni animazione rispetta `prefers-reduced-motion`.
+- **Header flottante** in vetro (blur + saturazione), non la solita barra piena.
+- **Dettagli funzionali** invece che decorativi: stato di apertura calcolato
+  dall'orario reale, mappa che si carica solo su clic.
+
+### Personalizzare i colori
+
+In cima a `src/styles.css`, nel blocco `:root`. Palette presa dal logo e
+dall'insegna del negozio (indaco + giallo):
+
+```css
+--indigo-950: #0e0926; /* fondo scuro delle sezioni full-bleed */
+--indigo-800: #2c1c68; /* indaco del logo — colore principale */
+--indigo-600: #43308f; /* indaco chiaro: link, icone, hover */
+--gold: #e0ad3e;       /* giallo dell'insegna: accenti su scuro */
+--gold-ink: #8a6512;   /* giallo scurito: testo su fondo chiaro */
+--lilac-100: #f5f3fc;  /* sfondi alternati */
+--ink: #12092e;        /* testo */
+```
+
+Regola: il giallo pieno ha poco contrasto su bianco, quindi per il testo si usa
+`--gold-ink`; il giallo puro resta su bordi, icone e superfici scure.
+
+### Verificare la resa senza aprire il browser
+
+```bash
+npm run build
+node node_modules/vite/bin/vite.js preview --port 4173
+node tools/screenshot.mjs http://localhost:4173/ shots
+```
+
+Genera `shots/desktop.png`, `shots/intera.png` (pagina intera) e
+`shots/mobile.png` usando Edge in headless (`puppeteer-core`, installato solo in
+locale con `npm i --no-save puppeteer-core`, non è una dipendenza del progetto).
+
 
 ### Logo
 
@@ -58,33 +110,14 @@ python tools/prepare-logo.py
 ```
 
 Animazione nell'header (`src/styles.css`, `.brand-logo.is-animated`): flip
-tridimensionale sull'asse X con prospettiva — 30% del tempo fermo, poi un giro
-completo, poi di nuovo fermo (9 s per ciclo). Si disattiva con "Riduci
+tridimensionale sull'asse X con prospettiva — resta fermo ~4 s, fa un giro
+completo in ~1,9 s, poi resta fermo (11 s per ciclo). Si disattiva con "Riduci
 animazioni" attivo nel sistema. Per un'inclinazione più morbida invece del giro
 completo, sostituisci il keyframe `logo-flip` con un'oscillazione
 `rotateX(-28deg)` ↔ `rotateX(28deg)`.
 
 La favicon è statica: nessun browser anima favicon PNG/ICO (solo Firefox
 anima le SVG), ed è una scelta voluta per non avere un'icona illeggibile a 16 px.
-
-
-
-### Personalizzare i colori
-
-In cima a `src/styles.css`, nel blocco `:root`. La palette viene dal logo e
-dall'insegna del negozio (indaco + giallo):
-
-```css
---navy: #2c1c68;      /* indaco del logo — colore principale */
---navy-soft: #43308f; /* indaco più chiaro, link e dettagli */
---gold: #d9a83c;      /* giallo dell'insegna, solo decorativo */
---gold-ink: #9c7418;  /* giallo scurito: unico usabile come testo su chiaro */
---cream: #f4f2fb;     /* lilla chiarissimo, sfondi alternati */
---ink: #140d33;       /* testo */
-```
-
-Regola: il giallo pieno ha poco contrasto su bianco, quindi per il testo si usa
-`--gold-ink`; il giallo puro resta su bordi, icone e superfici scure.
 
 ### Foto del negozio
 
@@ -118,8 +151,8 @@ senza modifiche.
 
 ## Prossimi passi possibili
 
-- [ ] Foto reali del negozio e dei reparti (oggi non ce ne sono)
-- [ ] Logo ufficiale al posto del monogramma "DB"
-- [ ] Pagina dedicata alle offerte telefonia
+- [ ] Foto dei reparti e degli interni (oggi c'è solo la vetrina)
+- [ ] Pagina dedicata alle liste nozze o alle offerte telefonia
 - [ ] Collegamento a Instagram/Facebook
 - [ ] Modulo contatti (richiede un servizio esterno o PHP su Aruba)
+- [ ] Pubblicazione su Aruba via FTP

@@ -17,45 +17,62 @@ export const orari = [
 
 export const reparti = [
   {
+    numero: '01',
     titolo: 'Elettrodomestici',
     testo:
-      'Grandi e piccoli elettrodomestici, con consegna a domicilio, installazione e assistenza post-vendita.',
-    icona: '🔌',
+      'Grandi e piccoli elettrodomestici delle migliori marche, con consegna a domicilio, installazione e assistenza seguita qui in negozio.',
+    icona: 'elettrodomestici',
+    grande: true,
   },
   {
+    numero: '02',
     titolo: 'Regali e liste nozze',
     testo:
-      'Un servizio dedicato alle liste di nozze e una selezione di idee regalo per matrimoni, battesimi e ricorrenze.',
-    icona: '🎁',
+      'Liste di nozze curate passo per passo e idee regalo per matrimoni, battesimi e ricorrenze.',
+    icona: 'regalo',
+    grande: true,
   },
   {
+    numero: '03',
     titolo: 'Casalinghi e tavola',
-    testo:
-      'Pentole, stoviglie, bicchieri, decanter e complementi per apparecchiare e ricevere gli ospiti.',
-    icona: '🍽️',
+    testo: 'Pentole, stoviglie, bicchieri e complementi per apparecchiare e ricevere.',
+    icona: 'tavola',
   },
   {
+    numero: '04',
     titolo: 'Telefonia e ricariche',
-    testo:
-      'Ricariche, offerte e assistenza per le principali reti, direttamente in negozio.',
-    icona: '📱',
+    testo: 'Ricariche, offerte e assistenza per le principali reti, in negozio.',
+    icona: 'telefono',
   },
 ]
 
 export const puntiForza = [
   {
+    numero: '01',
     titolo: 'Rivenditore autorizzato',
     testo:
-      'Prodotti delle migliori marche, con garanzia e assistenza gestita qui, senza dover scrivere a un call center.',
+      'Prodotti con garanzia e assistenza gestita qui, senza dover scrivere a un call center.',
   },
   {
-    titolo: 'Consiglio vero, di persona',
+    numero: '02',
+    titolo: 'Consiglio di persona',
     testo:
-      'Ti aiutiamo a scegliere il modello giusto per la tua casa, ti spieghiamo come usarlo e ti seguiamo anche dopo l’acquisto.',
+      'Ti aiutiamo a scegliere il modello giusto per la tua casa e ti seguiamo anche dopo l’acquisto.',
   },
   {
-    titolo: 'Liste di nozze seguite passo per passo',
+    numero: '03',
+    titolo: 'Liste di nozze seguite',
     testo:
       'Dalla scelta dei regali alla composizione della lista: un servizio curato, per gli sposi e per chi partecipa.',
   },
+]
+
+export const marquee = [
+  'Elettrodomestici',
+  'Regali',
+  'Liste nozze',
+  'Casalinghi',
+  'Consegna a domicilio',
+  'Assistenza',
+  'Montella',
 ]
