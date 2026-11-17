@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import Logo from './Logo'
 import { negozio } from '../data'
 
 const voci = [
@@ -23,9 +24,7 @@ export default function Header() {
     <header className={`site-header ${scrolled ? 'is-scrolled' : ''}`}>
       <div className="wrap header-inner">
         <a className="brand" href="#top" onClick={() => setOpen(false)}>
-          <span className="brand-mark" aria-hidden="true">
-            DB
-          </span>
+          <Logo size={60} />
           <span className="brand-text">
             <strong>Dello Buono</strong>
             <small>Montella</small>

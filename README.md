@@ -33,7 +33,26 @@ Tutti i testi, i recapiti, gli orari e i reparti stanno in un unico file:
 - `src/data.js` — nome, indirizzo, telefoni, email, orari, reparti, punti di forza
 - `src/App.jsx` — struttura delle sezioni (hero, reparti, negozio, orari/contatti)
 - `src/components/Header.jsx` — menu e link
+- `src/components/Logo.jsx` — medaglione con il monogramma che ruota
 - `src/styles.css` — colori e tipografia
+
+### Logo
+
+Il file originale del logo è `images.jpg` nella radice del progetto (va bene
+così: Vite lo importa e lo ottimizza nel build).
+
+- In alto a sinistra viene mostrato un **medaglione circolare** in cui si vede
+  solo il monogramma DB, che **ruota** (16 s per giro). Le scritte DELLO/BUONO
+  restano fuori dal ritaglio, quindi non girano mai.
+- Il ritaglio si regola in `src/styles.css`, su `.logo-spinner`:
+  - `background-size: 172%` → quanto zoom sul monogramma (aumenta = più zoom)
+  - `background-position: 50.5% 52%` → centratura del ritaglio
+- La rotazione si disattiva da sola con "Riduci animazioni" attivo nel sistema.
+- Favicon della scheda: `public/favicon.png`.
+
+Se vuoi tornare al logo intero (scritta inclusa) senza rotazione, basta
+sostituire `<Logo size={54} />` in `Header.jsx` con un `<img src="…">`.
+
 
 ### Personalizzare i colori
 
